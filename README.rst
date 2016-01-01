@@ -2,10 +2,13 @@
 Selenium extra API
 ==================
 
+.. image:: https://api.travis-ci.org/petrus-v/selenium-extra-api.svg?branch=master
+   :target: https://travis-ci.org/petrus-v/selenium-extra-api
+   :alt: Travis
+
 This is an extra api to help launcher to run the same task over multi
-webdrivers session from a config file.
-
-
+browsers through selenium webdrivers(local, grid, cloud provider...) session
+from 1 config file.
 
 Contribute
 ==========
