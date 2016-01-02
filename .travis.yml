@@ -18,6 +18,6 @@ before_install:
   - docker run -d --dns 8.8.8.8 --link selenium-hub:hub selenium/node-chrome
 install:
   - pip install nose
-  - python setup.py
+  - python setup.py install
 script:
   - nosetests -v selenium_extra/tests/

@@ -3,7 +3,7 @@ from setuptools import setup
 setup(
     name='selenium-extra-api',
     version='0.0.1',
-    descritption='selenium-extra-api add method to the existing API.',
+    description='selenium-extra-api add method to the existing API.',
     long_description=open('README.rst').read(),
     author='Pierre Verkest',
     author_email='pverkest@anybox.fr',
