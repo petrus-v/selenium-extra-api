@@ -53,8 +53,8 @@ In development:
 TODO
 ====
 
-* Travis config
-* Manage id to be unique if driver is set twice in selenium.json file
+* Allow to set several times the same config to prepare nth driver of the same
+  item, mange unique id
 * Rename capabilities parameter, this make thing confused
 * Think about object parameter when setting remote server
 * add more unittest about configuration
