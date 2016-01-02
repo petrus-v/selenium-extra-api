@@ -13,10 +13,10 @@ services:
   - docker
 before_install:
   - sh -e /etc/init.d/xvfb start
-  - docker run -d -p 127.0.0.1:4444:4444 --name selenium-hub -e GRID_TIMEOUT=10000 selenium/hub
-  - docker run docker run -d --dns 8.8.8.8 --link selenium-hub:hub --name node-chrome selenium/node-firefox
-  - docker run docker run -d --dns 8.8.8.8 --link selenium-hub:hub --name node-chrome selenium/node-chrome
   - apt-get install chromium chromedriver
+  - docker run -d -p 4444:4444 --name selenium-hub -e GRID_TIMEOUT=10000 selenium/hub
+  - docker run -d --dns 8.8.8.8 --link selenium-hub:hub --name node-chrome selenium/node-firefox
+  - docker run -d --dns 8.8.8.8 --link selenium-hub:hub --name node-chrome selenium/node-chrome
 install:
   - pip install nose
   - python setup.py
