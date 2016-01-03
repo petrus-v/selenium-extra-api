@@ -8,7 +8,11 @@ setup(
     author='Pierre Verkest',
     author_email='pverkest@anybox.fr',
     url='https://github.com/petrus-v/selenium-extra-api',
-    packages=['selenium_extra'],
+    packages=[
+        'selenium_extra',
+        'selenium_extra.conf',
+        'selenium_extra.drivers'
+    ],
     install_requires=[
         'selenium',
         'pyyaml',

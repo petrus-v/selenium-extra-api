@@ -58,6 +58,6 @@ TODO
 * Rename capabilities parameter, this make thing confused
 * Think about object parameter when setting remote server
 * add more unittest about configuration
-* documentation
+* documentation (do not forget to document plugable drivers)
 * find a proper way to pass user/password...
 * allow __doc__ key to comment json file (user should consider yaml files...)
