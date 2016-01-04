@@ -4,7 +4,6 @@ from selenium import webdriver
 
 
 class Grid(Driver):
-
     @classmethod
     def get_web_drivers(cls, conf, global_capabilities=None):
         web_drivers = []
@@ -12,24 +11,28 @@ class Grid(Driver):
             global_capabilities = {}
         else:
             global_capabilities = deepcopy(global_capabilities)
-        capabilities = conf.get('capabilities', {})
+        grid_conf = deepcopy(conf)
+        grid_conf.pop('class', None)
+        request_drivers = grid_conf.pop('request_drivers', [])
+        capabilities = grid_conf.pop('capabilities', {})
         global_capabilities.update(capabilities)
-        request_drivers = conf.get('request_drivers', [])
-        for capabilities in request_drivers:
+        for browser_req in request_drivers:
             name = 'grid'
-            name = '%s_%s' % (name, capabilities.get('browserName'))
-            name = '%s_%s' % (name, capabilities.get('version', 'lastest'))
-            name = '%s_%s' % (name, capabilities.get('platform', 'ANY'))
-            web_drivers.append(Grid(capabilities, name=name,
+            name = '%s_%s' % (name, browser_req.get('browserName'))
+            name = '%s_%s' % (name, browser_req.get('version', 'lastest'))
+            name = '%s_%s' % (name, browser_req.get('platform', 'ANY'))
+            web_drivers.append(Grid(grid_conf, browser_req, name=name,
                                     global_capabilities=global_capabilities))
         return web_drivers
 
-    def __init__(self, desired_capabilities, global_capabilities=None,
-                 name=None):
-        self.conf = desired_capabilities
-        self._capabilities = global_capabilities if global_capabilities else {}
-        self._capabilities.update(
-            {'desired_capabilities': desired_capabilities})
+    def __init__(self, grid_conf, desired_capabilities,
+                 global_capabilities=None, name=None):
+        capab = deepcopy(global_capabilities) if global_capabilities else {}
+        capab.update(desired_capabilities)
+        self._capabilities = deepcopy(grid_conf)
+        self._capabilities.update({
+            'desired_capabilities': capab
+        })
         if name:
             self._name = name
 
